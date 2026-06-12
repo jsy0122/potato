@@ -115,13 +115,12 @@ elif st.session_state.scene == "shout":
     st.markdown("""
     <div class="story-box">
     쓰레기통속에 있던 고양이가 깜짝놀라서 도망칩니다. 그 소리에 주변에 살던 인근주민들이 시끄럽다며 화를냅니다.
-    하지만 분명 당신이 본 잔상은 고양이가 아니라 성인 남성에 흡사한 덩치였습니다...
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("""
     <div class="story-box">
-    글을 입력하세요
+    하지만 분명 당신이 본 잔상은 고양이가 아니라 성인 남성에 흡사한 덩치였습니다...
     </div>
     """, unsafe_allow_html=True)
 
@@ -148,13 +147,13 @@ elif st.session_state.scene == "run":
     <div class="story-box">
     공포심 +10
 
-    당신은 너무 무서워서 골목을 빠져나오기로 했습니다. 오늘은 어쩔 수 없다고 생각을 한 후 택시를 부르기로 했습니다.
+    당신은 너무 무서워서 골목을 빠져나오기로 했습니다. 
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("""
     <div class="story-box">
-    글을 입력하세요
+    오늘은 어쩔 수 없다며 생각을 한 후 택시를 부르기로 했습니다.
     </div>
     """, unsafe_allow_html=True)
 
@@ -180,13 +179,13 @@ elif st.session_state.scene == "alley":
     st.markdown("""
     <div class="story-box">
     골목 안쪽엔 취객 한명이 쓰러져 있습니다. 취객이 넘어지며 큰 소리가 난 것 같습니다.
-    당신은 그 취객을 지나쳐 갈때 매우 심한 악취에 인상이 찌푸려집니다
+    
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("""
     <div class="story-box">
-    글을 입력하세요
+     그 취객의 옆을 지나쳐 가자  매우 심한 악취에 인상이 찌푸려집니다
     </div>
     """, unsafe_allow_html=True)
 
