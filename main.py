@@ -9,7 +9,7 @@ st.set_page_config(
 )
 
 # -----------------------------------
-# 검은 배경
+# 스타일
 # -----------------------------------
 st.markdown("""
 <style>
@@ -20,12 +20,35 @@ st.markdown("""
 
 .story-box{
     background-color:#111111;
-    border:1px solid #444444;
-    padding:20px;
-    border-radius:10px;
+    border:1px solid #333333;
+    padding:18px;
+    border-radius:8px;
     color:white;
-    font-size:20px;
+    font-size:17px;
+    line-height:1.8;
     margin-bottom:20px;
+}
+
+section[data-testid="stSidebar"]{
+    background-color:#0a0a0a;
+}
+
+.stButton > button{
+    width:100%;
+    background-color:#1a1a1a;
+    color:white;
+    border:1px solid #444444;
+}
+
+.stButton > button:hover{
+    background-color:#2a2a2a;
+    border:1px solid #666666;
+}
+
+.fear-text{
+    color:#ff3333;
+    font-size:24px;
+    font-weight:bold;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -43,17 +66,16 @@ if "scene" not in st.session_state:
 # 사이드바
 # -----------------------------------
 with st.sidebar:
-    st.title("공포심")
 
-    st.metric(
-        label="현재 공포심",
-        value=st.session_state.fear
+    st.markdown(
+        f'<p class="fear-text">공포심 : {st.session_state.fear}</p>',
+        unsafe_allow_html=True
     )
 
     st.markdown("---")
 
-    st.subheader("아이템")
-    st.write("아직 없음")
+    st.write("아이템")
+    st.write("없음")
 
 # -----------------------------------
 # 시작 장면
@@ -97,6 +119,26 @@ elif st.session_state.scene == "shout":
     </div>
     """, unsafe_allow_html=True)
 
+    st.markdown("""
+    <div class="story-box">
+    글을 입력하세요
+    </div>
+    """, unsafe_allow_html=True)
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        if st.button("선택지 1"):
+            st.session_state.scene = "scene1"
+
+    with col2:
+        if st.button("선택지 2"):
+            st.session_state.scene = "scene2"
+
+    with col3:
+        if st.button("선택지 3"):
+            st.session_state.scene = "scene3"
+
 # -----------------------------------
 # 2번 장면
 # -----------------------------------
@@ -110,6 +152,26 @@ elif st.session_state.scene == "run":
     </div>
     """, unsafe_allow_html=True)
 
+    st.markdown("""
+    <div class="story-box">
+    글을 입력하세요
+    </div>
+    """, unsafe_allow_html=True)
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        if st.button("선택지 4"):
+            st.session_state.scene = "scene4"
+
+    with col2:
+        if st.button("선택지 5"):
+            st.session_state.scene = "scene5"
+
+    with col3:
+        if st.button("선택지 6"):
+            st.session_state.scene = "scene6"
+
 # -----------------------------------
 # 3번 장면
 # -----------------------------------
@@ -119,5 +181,36 @@ elif st.session_state.scene == "alley":
     <div class="story-box">
     골목 안쪽엔 취객 한명이 쓰러져 있습니다. 취객이 넘어지며 큰 소리가 난 것 같습니다.
     당신은 그 취객을 지나쳐 갈때 매우 심한 악취에 인상이 찌푸려집니다
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="story-box">
+    글을 입력하세요
+    </div>
+    """, unsafe_allow_html=True)
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        if st.button("선택지 7"):
+            st.session_state.scene = "scene7"
+
+    with col2:
+        if st.button("선택지 8"):
+            st.session_state.scene = "scene8"
+
+    with col3:
+        if st.button("선택지 9"):
+            st.session_state.scene = "scene9"
+
+# -----------------------------------
+# 이후 장면들
+# -----------------------------------
+elif st.session_state.scene.startswith("scene"):
+
+    st.markdown("""
+    <div class="story-box">
+    글을 입력하세요
     </div>
     """, unsafe_allow_html=True)
