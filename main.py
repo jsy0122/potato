@@ -4,36 +4,61 @@ import streamlit as st
 # 페이지 설정
 # -----------------------------
 st.set_page_config(
-    page_title="🌙 미연시 게임",
+    page_title="미연시 게임",
     layout="wide"
 )
 
 # -----------------------------
-# 다크 모드 스타일
+# 다크 테마
 # -----------------------------
 st.markdown("""
 <style>
+
+/* 전체 배경 */
 .stApp {
     background-color: #111111;
+}
+
+/* 본문 글씨 */
+html, body, [class*="css"] {
     color: white;
 }
 
-h1, h2, h3, p, div {
+/* 사이드바 */
+[data-testid="stSidebar"] {
+    background-color: #111111;
+}
+
+/* 사이드바 글씨 */
+[data-testid="stSidebar"] * {
     color: white !important;
 }
 
+/* 버튼 */
 .stButton > button {
     width: 100%;
+    height: 60px;
     background-color: #333333;
     color: white;
+    border: 1px solid #555555;
     border-radius: 10px;
-    height: 60px;
     font-size: 18px;
 }
 
 .stButton > button:hover {
     background-color: #555555;
+    color: white;
 }
+
+/* Metric 글씨 */
+[data-testid="stMetricValue"] {
+    color: white;
+}
+
+[data-testid="stMetricLabel"] {
+    color: white;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -50,7 +75,7 @@ if "fear" not in st.session_state:
 # 사이드바
 # -----------------------------
 with st.sidebar:
-    st.title("😱 상태창")
+    st.title("상태창")
     st.metric("공포심", st.session_state.fear)
 
 # -----------------------------
@@ -58,39 +83,38 @@ with st.sidebar:
 # -----------------------------
 if st.session_state.scene == 1:
 
-    st.title("🌙 프롤로그")
+    st.title("프롤로그")
 
-    st.write('"
-    당신은 집에가기 위해 어두운 골목길을 걷고있습니다 오늘 뉴스에서 본 연쇠살인사건이 기억나 골목이 더욱 어두워 보이는군요
+    st.write("""
+    당신은 집에가기위해 골목길을 걷고있습니다. 평소에도 스산하고 무서운 분위기였지만 오늘 아침 뉴스에서본 "연쇠살인"이란 문구가 생각이나 더욱 무서운 기분이 듭니다.
 
-    어두운 골목길 속에서 부스럭 소리와 함께 무언가가 스쳐지나간것 같습니다
-
-    "')
+    어두운 골목길 안쪽에서 부스럭거리는 소리와 함께 무언가가 스쳐지나간것같은 잔상이 보입니다.
+    """)
 
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        if st.button("📢 누구냐고 소리치기"):
+        if st.button("누구냐고 소리치기"):
             st.session_state.scene = 2
             st.rerun()
 
     with col2:
-        if st.button("🏃 도망치기"):
+        if st.button("도망치기"):
             st.session_state.fear += 10
             st.session_state.scene = 3
             st.rerun()
 
     with col3:
-        if st.button("🚶 무시하고 걷기"):
+        if st.button("무시하고 걷기"):
             st.session_state.scene = 4
             st.rerun()
 
 # -----------------------------
-# 누구냐고 소리치기
+# 장면 2
 # -----------------------------
 elif st.session_state.scene == 2:
 
-    st.title("📢 누구냐고 소리쳤다")
+    st.title("누구냐고 소리쳤다")
 
     st.write("""
     내용을 적으시오
@@ -105,14 +129,14 @@ elif st.session_state.scene == 2:
         st.rerun()
 
 # -----------------------------
-# 도망치기
+# 장면 3
 # -----------------------------
 elif st.session_state.scene == 3:
 
-    st.title("🏃 도망쳤다")
+    st.title("도망쳤다")
 
     st.write("""
-    공포심이 10 증가했다!
+    공포심이 10 증가했다.
 
     내용을 적으시오
 
@@ -126,11 +150,11 @@ elif st.session_state.scene == 3:
         st.rerun()
 
 # -----------------------------
-# 무시하고 걷기
+# 장면 4
 # -----------------------------
 elif st.session_state.scene == 4:
 
-    st.title("🚶 무시하고 걸었다")
+    st.title("무시하고 걸었다")
 
     st.write("""
     내용을 적으시오
@@ -145,11 +169,11 @@ elif st.session_state.scene == 4:
         st.rerun()
 
 # -----------------------------
-# 공통 다음 장면
+# 장면 5
 # -----------------------------
 elif st.session_state.scene == 5:
 
-    st.title("🌑 다음 이야기")
+    st.title("다음 이야기")
 
     st.write("""
     내용을 적으시오
@@ -161,7 +185,7 @@ elif st.session_state.scene == 5:
     내용을 적으시오
     """)
 
-    if st.button("🔄 처음부터"):
+    if st.button("처음부터"):
         st.session_state.scene = 1
         st.session_state.fear = 0
         st.rerun()
