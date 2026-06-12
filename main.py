@@ -62,7 +62,8 @@ if st.session_state.scene == "start":
 
     st.markdown("""
     <div class="story-box">
-    글을 적어주세요
+    당신은 어두운 골목길을 걷고있습니다. 오늘 아침에 본 "연쇄살인사건" 이라는 뉴스를 봐서인지 오늘따라 골목길이 스산합니다.
+    걸어가던중 골목 깊은곳에서 쿠당탕거리는 소리와 함께 어떠한 잔상이 스쳐지나간것 같습니다.
     </div>
     """, unsafe_allow_html=True)
 
@@ -91,7 +92,8 @@ elif st.session_state.scene == "shout":
 
     st.markdown("""
     <div class="story-box">
-    1번 선택 후 장면 글을 적어주세요
+    쓰레기통속에 있던 고양이가 깜짝놀라서 도망칩니다. 그 소리에 주변에 살던 인근주민들이 시끄럽다며 화를냅니다.
+    하지만 분명 당신이 본 잔상은 고양이가 아니라 성인 남성에 흡사한 덩치였습니다...
     </div>
     """, unsafe_allow_html=True)
 
@@ -104,7 +106,7 @@ elif st.session_state.scene == "run":
     <div class="story-box">
     공포심 +10
 
-    2번 선택 후 장면 글을 적어주세요
+    당신은 너무 무서워서 골목을 빠져나오기로 했습니다. 오늘은 어쩔 수 없다고 생각을 한 후 택시를 부르기로 했습니다.
     </div>
     """, unsafe_allow_html=True)
 
@@ -115,6 +117,6 @@ elif st.session_state.scene == "alley":
 
     st.markdown("""
     <div class="story-box">
-    3번 선택 후 장면 글을 적어주세요
+    골목 안쪽엔 취객 한명이 쓰러져 있습니다. 취객이 넘어지며 큰 소리가 난 것 같습니다.
     </div>
     """, unsafe_allow_html=True)
