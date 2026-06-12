@@ -62,6 +62,9 @@ if "fear" not in st.session_state:
 if "scene" not in st.session_state:
     st.session_state.scene = "start"
 
+if "items" not in st.session_state:
+    st.session_state.items = []
+
 # -----------------------------------
 # 사이드바
 # -----------------------------------
@@ -75,7 +78,12 @@ with st.sidebar:
     st.markdown("---")
 
     st.write("아이템")
-    st.write("없음")
+
+    if len(st.session_state.items) == 0:
+        st.write("없음")
+    else:
+        for item in st.session_state.items:
+            st.write(f"• {item}")
 
 # -----------------------------------
 # 시작 장면
@@ -124,19 +132,9 @@ elif st.session_state.scene == "shout":
     </div>
     """, unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns(3)
-
-    with col1:
-        if st.button("선택지 1"):
-            st.session_state.scene = "scene1"
-
-    with col2:
-        if st.button("선택지 2"):
-            st.session_state.scene = "scene2"
-
-    with col3:
-        if st.button("선택지 3"):
-            st.session_state.scene = "scene3"
+    if st.button("다음"):
+        st.session_state.scene = "next_scene"
+        st.rerun()
 
 # -----------------------------------
 # 2번 장면
@@ -147,7 +145,7 @@ elif st.session_state.scene == "run":
     <div class="story-box">
     공포심 +10
 
-    당신은 너무 무서워서 골목을 빠져나오기로 했습니다. 
+    당신은 너무 무서워서 골목을 빠져나오기로 했습니다.
     </div>
     """, unsafe_allow_html=True)
 
@@ -157,19 +155,9 @@ elif st.session_state.scene == "run":
     </div>
     """, unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns(3)
-
-    with col1:
-        if st.button("선택지 4"):
-            st.session_state.scene = "scene4"
-
-    with col2:
-        if st.button("선택지 5"):
-            st.session_state.scene = "scene5"
-
-    with col3:
-        if st.button("선택지 6"):
-            st.session_state.scene = "scene6"
+    if st.button("다음"):
+        st.session_state.scene = "next_scene"
+        st.rerun()
 
 # -----------------------------------
 # 3번 장면
@@ -179,37 +167,71 @@ elif st.session_state.scene == "alley":
     st.markdown("""
     <div class="story-box">
     골목 안쪽엔 취객 한명이 쓰러져 있습니다. 취객이 넘어지며 큰 소리가 난 것 같습니다.
-    
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("""
     <div class="story-box">
-     그 취객의 옆을 지나쳐 가자  매우 심한 악취에 인상이 찌푸려집니다
+    그 취객의 옆을 지나쳐 가자 매우 심한 악취에 인상이 찌푸려집니다.
     </div>
     """, unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns(3)
+    if st.button("다음"):
+        st.session_state.scene = "next_scene"
+        st.rerun()
+
+# -----------------------------------
+# 공통 선택 장면
+# -----------------------------------
+elif st.session_state.scene == "next_scene":
+
+    st.markdown("""
+    <div class="story-box">
+    다음날 뉴스를 보니 당신이 간 골목길에서 살인사건이 일어났습니다. 
+    하지만 당신은 지금 출근을 해야하는 상황입니다.
+    </div>
+    """, unsafe_allow_html=True)
+
+    col1, col2 = st.columns(2)
 
     with col1:
-        if st.button("선택지 7"):
-            st.session_state.scene = "scene7"
+        if st.button("1. 지각할수는 없다! 출근하기"):
+
+            st.session_state.fear = max(
+                0,
+                st.session_state.fear - 10
+            )
+
+            if "출근용 가방" not in st.session_state.items:
+                st.session_state.items.append("출근용 가방")
+
+            st.session_state.scene = "after_work"
+            st.rerun()
 
     with col2:
-        if st.button("선택지 8"):
-            st.session_state.scene = "scene8"
+        if st.button("2. 아니야, 회사에서 이해해 주겠지 신고가 먼저야! 경찰에 신고하기"):
 
-    with col3:
-        if st.button("선택지 9"):
-            st.session_state.scene = "scene9"
+            st.session_state.scene = "after_police"
+            st.rerun()
 
 # -----------------------------------
-# 이후 장면들
+# 출근 루트
 # -----------------------------------
-elif st.session_state.scene.startswith("scene"):
+elif st.session_state.scene == "after_work":
 
     st.markdown("""
     <div class="story-box">
-    글을 입력하세요
+    당신은 찝찝하지만 출근용 가방을 들고 회사에 출근합니다.
+    </div>
+    """, unsafe_allow_html=True)
+
+# -----------------------------------
+# 신고 루트
+# -----------------------------------
+elif st.session_state.scene == "after_police":
+
+    st.markdown("""
+    <div class="story-box">
+    당신은 전화기를 붙들고 경찰서에 신고를 합니다. 담당경찰관이 주말에 근처 파출소에 오라고 문자를 보냈습니다.
     </div>
     """, unsafe_allow_html=True)
