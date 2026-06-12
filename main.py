@@ -62,8 +62,8 @@ if "fear" not in st.session_state:
 if "scene" not in st.session_state:
     st.session_state.scene = "start"
 
-if "items" not in st.session_state:
-    st.session_state.items = []
+if "inventory" not in st.session_state:
+    st.session_state.inventory = []
 
 # -----------------------------------
 # 사이드바
@@ -79,10 +79,10 @@ with st.sidebar:
 
     st.write("아이템")
 
-    if len(st.session_state.items) == 0:
+    if len(st.session_state.inventory) == 0:
         st.write("없음")
     else:
-        for item in st.session_state.items:
+        for item in st.session_state.inventory:
             st.write(f"• {item}")
 
 # -----------------------------------
@@ -187,7 +187,7 @@ elif st.session_state.scene == "next_scene":
 
     st.markdown("""
     <div class="story-box">
-    다음날 뉴스를 보니 당신이 간 골목길에서 살인사건이 일어났습니다. 
+    다음날 뉴스를 보니 당신이 간 골목길에서 살인사건이 일어났습니다.
     하지만 당신은 지금 출근을 해야하는 상황입니다.
     </div>
     """, unsafe_allow_html=True)
@@ -202,8 +202,8 @@ elif st.session_state.scene == "next_scene":
                 st.session_state.fear - 10
             )
 
-            if "출근용 가방" not in st.session_state.items:
-                st.session_state.items.append("출근용 가방")
+            if "출근용 가방" not in st.session_state.inventory:
+                st.session_state.inventory.append("출근용 가방")
 
             st.session_state.scene = "after_work"
             st.rerun()
@@ -225,6 +225,10 @@ elif st.session_state.scene == "after_work":
     </div>
     """, unsafe_allow_html=True)
 
+    if st.button("다음"):
+        st.session_state.scene = "after_work_next"
+        st.rerun()
+
 # -----------------------------------
 # 신고 루트
 # -----------------------------------
@@ -233,5 +237,31 @@ elif st.session_state.scene == "after_police":
     st.markdown("""
     <div class="story-box">
     당신은 전화기를 붙들고 경찰서에 신고를 합니다. 담당경찰관이 주말에 근처 파출소에 오라고 문자를 보냈습니다.
+    </div>
+    """, unsafe_allow_html=True)
+
+    if st.button("다음"):
+        st.session_state.scene = "after_police_next"
+        st.rerun()
+
+# -----------------------------------
+# 출근 루트 다음 장면
+# -----------------------------------
+elif st.session_state.scene == "after_work_next":
+
+    st.markdown("""
+    <div class="story-box">
+    글을 입력하세요
+    </div>
+    """, unsafe_allow_html=True)
+
+# -----------------------------------
+# 신고 루트 다음 장면
+# -----------------------------------
+elif st.session_state.scene == "after_police_next":
+
+    st.markdown("""
+    <div class="story-box">
+    글을 입력하세요
     </div>
     """, unsafe_allow_html=True)
