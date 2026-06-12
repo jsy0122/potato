@@ -118,5 +118,6 @@ elif st.session_state.scene == "alley":
     st.markdown("""
     <div class="story-box">
     골목 안쪽엔 취객 한명이 쓰러져 있습니다. 취객이 넘어지며 큰 소리가 난 것 같습니다.
+    당신은 그 취객을 지나쳐 갈때 매우 심한 악취에 인상이 찌푸려집니다
     </div>
     """, unsafe_allow_html=True)
