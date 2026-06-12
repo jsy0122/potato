@@ -191,7 +191,10 @@ elif st.session_state.scene == 5:
         if st.button("무시한다"):
             st.session_state.scene = 7
             st.rerun()
-
+            
+  if st.button("다음"):
+        st.session_state.scene = 5
+        st.rerun()
 # -----------------------------
 # 장면 6
 # -----------------------------
@@ -229,6 +232,10 @@ elif st.session_state.scene == 6:
 
     if st.button("뒤를 돌아본다"):
         st.session_state.scene = 8
+        st.rerun()
+
+  if st.button("다음"):
+        st.session_state.scene = 5
         st.rerun()
 
 # -----------------------------
